@@ -1,4 +1,4 @@
-#include <iostream>
+//#include <iostream>
 class Student{
     public:
         void makeMove(int Record[5][6], int Max[5][6], Color color[5][6], Color inputColor){
@@ -100,7 +100,7 @@ class Student{
         int x;
         int y;
     };
-int main(void){
-    std::cout << "hello" << '\n';
-    return 0;
-}
+// int main(void){
+//     std::cout << "hello" << '\n';
+//     return 0;
+// }
