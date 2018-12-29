@@ -1,14 +1,8 @@
-enum Color{
-        White, // Initital 0
-        Blue, // Player One
-        Red, // Player Two
-        Black //Explosion
-    };
 class Student{
     public:
         void makeMove(int Record[5][6], int Max[5][6], Color color[5][6], Color inputColor){
-            x = 1;
-            y = 1;
+            x = 0;
+            y = 0;
             for (int i = 0; i < 5; i ++){
                 for (int j = 0; j < 6; j ++){
                     if (Record[i][j] == Max[5][6] - 1 && should_attack(Record, Max, color, inputColor, i, j)){
@@ -16,13 +10,17 @@ class Student{
                         y = j;
                         return;
                     }
-                    else if (is_corner(i, j) && !is_corner(x, y)){
-                        if (color[i][j] == White){
+                    else if (is_corner(i, j) && is_playable(color, i, j, inputColor)) {
+                        if (!is_corner(x, y)){
+                            x = i;
+                            y = j;
+                        }
+                        else if (is_corner(x, y) && Max[x][y] - Record[x][y] < Max[i][j] - Record[i][j]){
                             x = i;
                             y = j;
                         }
                     }
-                    else if (is_edge(i, j){
+                    else if (is_edge(i, j) && is_playable(color, i, j, inputColor)){
                         if (!is_corner(x, y) && !is_edge(x, y)) {
                             x = i;
                             y = j;
@@ -32,10 +30,12 @@ class Student{
                             y = j;
                         }
                     }
-                    else if (!is_corner(x, y) && !is_edge(x, y) && !is_corner(i, j) && !is_edge(i, j)){
-                        if (color[i][j] == White){
-                            x = i;
-                            y = j;
+                    else if (is_playable(color, i, j, inputColor)){
+                        if (!is_corner(x, y) && !is_edge(x, y)){
+                            if (Max[x][y] - Record[x][y] < Max[i][j] - Record[i][j]){
+                                x = i;
+                                y = j;
+                            }
                         }
                     }
                 }
@@ -77,6 +77,10 @@ class Student{
             if (i == 4) return true;
             if (j == 5) return true;
             return false;
+        }
+        bool is_playable(Color color[5][6], const int & i, const int & j, Color inputColor){
+            if (color[i][j] == WHITE || color[i][j] == inputColor) return true;
+            else return false;
         }
         bool is_valid(const int & i, const int & j){
             if (i >= 0 && i < 5 && j >= 0; j <= 6) return true;
