@@ -1,3 +1,4 @@
+#include <iostream>
 class Student{
     public:
         void makeMove(int Record[5][6], int Max[5][6], Color color[5][6], Color inputColor){
@@ -5,7 +6,7 @@ class Student{
             y = 0;
             for (int i = 0; i < 5; i ++){
                 for (int j = 0; j < 6; j ++){
-                    if (Record[i][j] == Max[5][6] - 1 && should_attack(Record, Max, color, inputColor, i, j)){
+                    if (Record[i][j] == Max[i][j] - 1 && should_attack(Record, Max, color, inputColor, i, j)){
                         x = i;
                         y = j;
                         return;
@@ -79,7 +80,7 @@ class Student{
             return false;
         }
         bool is_playable(Color color[5][6], const int & i, const int & j, Color inputColor){
-            if (color[i][j] == WHITE || color[i][j] == inputColor) return true;
+            if (color[i][j] == White || color[i][j] == inputColor) return true;
             else return false;
         }
         bool is_valid(const int & i, const int & j){
@@ -99,3 +100,7 @@ class Student{
         int x;
         int y;
     };
+int main(void){
+    std::cout << "hello" << '\n';
+    return 0;
+}
