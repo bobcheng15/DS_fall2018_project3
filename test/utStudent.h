@@ -66,7 +66,15 @@ TEST(Student, testStudentIsEdge){
     EXPECT_TRUE(stud.is_edge(2, 5));
     EXPECT_TRUE(stud.is_edge(3, 5));
     EXPECT_TRUE(stud.is_edge(4, 5));
+    EXPECT_FALSE(stud.is_edge(3, 4));
+}
 
-
+TEST(Student, testStudnetIsValid){
+    Student stud = Student();
+    EXPECT_TRUE(stud.is_valid(0, 0));
+    EXPECT_TRUE(stud.is_valid(1, 0));
+    EXPECT_FALSE(stud.is_valid(-1, 0));
+    EXPECT_FALSE(stud.is_valid(-2, 0));
+    EXPECT_FALSE(stud.is_valid(5, 0));
 }
 #endif

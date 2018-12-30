@@ -13,6 +13,10 @@ public:
         x = 5;
         y = 6;
     }
+    bool is_valid(const int & i, const int & j) {
+        if ((i >= 0) && (i < 5) && (j >= 0) && (j < 6)) return true;
+        else return false;
+    }
     bool is_playable(Color color[5][6], const int & i, const int & j, Color inputColor){
         if (color[i][j] == White || color[i][j] == inputColor) return true;
         else return false;
