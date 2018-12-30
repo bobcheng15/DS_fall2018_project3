@@ -1,41 +1,52 @@
-//#include <iostream>
+#include <iostream>
+enum Color{
+        White, // Initital 0
+        Blue, // Player One
+        Red, // Player Two
+        Black //Explosion
+    };
+
 class Student{
     public:
+        Student(){
+        }
         void makeMove(int Record[5][6], int Max[5][6], Color color[5][6], Color inputColor){
             x = 0;
             y = 0;
             for (int i = 0; i < 5; i ++){
                 for (int j = 0; j < 6; j ++){
-                    if (Record[i][j] == Max[i][j] - 1 && should_attack(Record, Max, color, inputColor, i, j)){
-                        x = i;
-                        y = j;
-                        return;
-                    }
-                    else if (is_corner(i, j) && is_playable(color, i, j, inputColor)) {
-                        if (!is_corner(x, y)){
+                    if (is_playable(color, i, j, inputColor)){
+                        if (Record[i][j] == Max[i][j] - 1 && should_attack(Record, Max, color, inputColor, i, j)){
                             x = i;
                             y = j;
+                            return;
                         }
-                        else if (is_corner(x, y) && Max[x][y] - Record[x][y] < Max[i][j] - Record[i][j]){
-                            x = i;
-                            y = j;
-                        }
-                    }
-                    else if (is_edge(i, j) && is_playable(color, i, j, inputColor)){
-                        if (!is_corner(x, y) && !is_edge(x, y)) {
-                            x = i;
-                            y = j;
-                        }
-                        else if (is_edge(x, y) && Max[x][y] - Record[x][y] < Max[i][j] - Record[i][j]){
-                            x = i;
-                            y = j;
-                        }
-                    }
-                    else if (is_playable(color, i, j, inputColor)){
-                        if (!is_corner(x, y) && !is_edge(x, y)){
-                            if (Max[x][y] - Record[x][y] < Max[i][j] - Record[i][j]){
+                        else if (is_corner(i, j)) {
+                            if (!is_corner(x, y)) {
                                 x = i;
                                 y = j;
+                            }
+                            else if (is_corner(x, y) && Max[x][y] - Record[x][y] < Max[i][j] - Record[i][j]){
+                                x = i;
+                                y = j;
+                            }
+                        }
+                        else if (is_edge(i, j)){
+                            if (!is_corner(x, y) && !is_edge(x, y)) {
+                                x = i;
+                                y = j;
+                            }
+                            else if (is_edge(x, y) && Max[x][y] - Record[x][y] < Max[i][j] - Record[i][j]){
+                                x = i;
+                                y = j;
+                            }
+                        }
+                        else if (is_playable(color, i, j, inputColor)){
+                            if (!is_corner(x, y) && !is_edge(x, y)){
+                                if (Max[x][y] - Record[x][y] < Max[i][j] - Record[i][j]){
+                                    x = i;
+                                    y = j;
+                                }
                             }
                         }
                     }
@@ -100,7 +111,21 @@ class Student{
         int x;
         int y;
     };
-// int main(void){
-//     std::cout << "hello" << '\n';
-//     return 0;
-// }
+int main(void){
+    int record[5][6];
+    int Max[5][6];
+    Color color[5][6];
+    for (int i = 0; i < 5; i ++){
+        for (int j = 0; j < 6; j ++){
+            record[i][j] = 0;
+            Max[i][j] = 5;
+            color[i][j] = White;
+        }
+    }
+    Student stud;
+    stud.makeMove(record, Max, color, Blue);
+    int x = stud.getX();
+    int y = stud.getY();
+    std::cout << x << " " << y;
+    return 0;
+}
