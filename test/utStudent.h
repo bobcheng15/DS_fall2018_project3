@@ -47,10 +47,26 @@ TEST(Student, testStudentIsCorner){
 
 TEST(Student, testStudentIsEdge){
     Student stud = Student();
+    EXPECT_TRUE(stud.is_edge(0, 0));
+    EXPECT_TRUE(stud.is_edge(1, 0));
+    EXPECT_TRUE(stud.is_edge(2, 0));
+    EXPECT_TRUE(stud.is_edge(3, 0));
+    EXPECT_TRUE(stud.is_edge(4, 0));
+    EXPECT_TRUE(stud.is_edge(4, 1));
+    EXPECT_TRUE(stud.is_edge(4, 2));
+    EXPECT_TRUE(stud.is_edge(4, 3));
+    EXPECT_TRUE(stud.is_edge(4, 4));
+    EXPECT_TRUE(stud.is_edge(4, 5));
+    EXPECT_TRUE(stud.is_edge(0, 1));
+    EXPECT_TRUE(stud.is_edge(0, 2));
+    EXPECT_TRUE(stud.is_edge(0, 3));
+    EXPECT_TRUE(stud.is_edge(0, 4));
+    EXPECT_TRUE(stud.is_edge(0, 5));
+    EXPECT_TRUE(stud.is_edge(1, 5));
+    EXPECT_TRUE(stud.is_edge(2, 5));
+    EXPECT_TRUE(stud.is_edge(3, 5));
+    EXPECT_TRUE(stud.is_edge(4, 5));
+
+
 }
-
-
-
-
-
 #endif

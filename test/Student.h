@@ -24,6 +24,14 @@ public:
         if (i == 4 && j == 5) return true;
         return false;
     }
+
+    bool is_edge (const int & i, const int & j){
+        if (i == 0) return true;
+        if (j == 0) return true;
+        if (i == 4) return true;
+        if (j == 5) return true;
+        return false;
+    }
     int x;
     int y;
 };
