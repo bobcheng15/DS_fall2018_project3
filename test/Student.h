@@ -17,6 +17,13 @@ public:
         if (color[i][j] == White || color[i][j] == inputColor) return true;
         else return false;
     }
+    bool is_corner (const int & i, const int & j){
+        if (i == 0 && j == 0) return true;
+        if (i == 4 && j == 0) return true;
+        if (i == 0 && j == 5) return true;
+        if (i == 4 && j == 5) return true;
+        return false;
+    }
     int x;
     int y;
 };

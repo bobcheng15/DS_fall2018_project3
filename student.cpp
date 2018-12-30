@@ -95,7 +95,7 @@ class Student{
             else return false;
         }
         bool is_valid(const int & i, const int & j){
-            if (i >= 0 && i < 5 && j >= 0; j <= 6) return true;
+            if (i >= 0 && i < 5 && j >= 0; j < 6) return true;
             else return false;
         }
         int getX(){

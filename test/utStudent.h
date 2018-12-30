@@ -36,6 +36,19 @@ TEST(Student, testStudentIsPlayable){
     EXPECT_FALSE(playable);
 }
 
+TEST(Student, testStudentIsCorner){
+    Student stud = Student();
+    EXPECT_TRUE(stud.is_corner(0, 0));
+    EXPECT_TRUE(stud.is_corner(4, 5));
+    EXPECT_TRUE(stud.is_corner(4, 0));
+    EXPECT_TRUE(stud.is_corner(0, 5));
+    EXPECT_FALSE(stud.is_corner(1, 0));
+}
+
+TEST(Student, testStudentIsEdge){
+    Student stud = Student();
+}
+
 
 
 
