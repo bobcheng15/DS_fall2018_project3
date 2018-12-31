@@ -11,8 +11,8 @@ class Student{
         Student(){
         }
         void makeMove(int Record[5][6], int Max[5][6], Color color[5][6], Color inputColor){
-            x = 0;
-            y = 0;
+            x = 5;
+            y = 6;
             for (int i = 0; i < 5; i ++){
                 for (int j = 0; j < 6; j ++){
                     if (is_playable(color, i, j, inputColor)){
