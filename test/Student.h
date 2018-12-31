@@ -1,5 +1,6 @@
 #ifndef STUDENT_H_INCLUDED
 #define STUDENT_H_INCLUDED
+#include <iostream>
 enum Color{
         White, // Initital 0
         Blue, // Player One
@@ -19,10 +20,11 @@ public:
         for (int i = 0; i < 5; i ++){
             for (int j = 0; j < 6; j ++){
                 if (is_playable(color, i, j, inputColor)){
-                    if (Record[i][j] == Max[i][j] - 1 && should_attack(Record, Max, color, inputColor, i, j)){
+                    //std::cout << i << " " << j << '\n';
+                    if (Record[i][j] == (Max[i][j] - 1) && should_attack(Record, Max, color, inputColor, i, j)){
                         x = i;
                         y = j;
-                        break;
+                        return;
                     }
                     else if (is_corner(i, j)){
                         if (!is_corner(x, y) && !is_edge(x, y)){

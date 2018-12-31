@@ -96,4 +96,35 @@ TEST(Student, testStudentShouldAttack){
     bool attack = stud.should_attack(Record, Max, color, Red, i, j);
     EXPECT_TRUE(attack);
 }
+
+TEST(Student, testStudentMakeMove){
+    Student stud = Student();
+    int Record[5][6];
+    Color color[5][6];
+    int Max[5][6];
+    for (int i = 0; i < 5; i ++){
+        for (int j = 0; j < 6; j ++){
+            Record[i][j] = 0;
+            Max[i][j] = 4;
+            color[i][j] = White;
+        }
+    }
+    stud.makeMove(Record, Max, color, Blue);
+    EXPECT_EQ(stud.x, 0);
+    EXPECT_EQ(stud.y, 0);
+    Record[1][1] = 3;
+    Record[1][2] = 3;
+    color[1][1] = Blue;
+    color[1][2] = Red;
+    int i = 1;
+    int j = 1;
+    bool playable = stud.is_playable(color, i, j, Blue);
+    EXPECT_TRUE(playable);
+    EXPECT_TRUE(Record[i][j] == (Max[i][j] - 1));
+    bool attack = stud.should_attack(Record, Max, color, Blue, i, j);
+    EXPECT_TRUE(attack);
+    stud.makeMove(Record, Max, color, Blue);
+    EXPECT_EQ(stud.x, 1);
+    EXPECT_EQ(stud.y, 1);
+}
 #endif
