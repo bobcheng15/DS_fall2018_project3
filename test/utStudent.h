@@ -77,4 +77,23 @@ TEST(Student, testStudnetIsValid){
     EXPECT_FALSE(stud.is_valid(-2, 0));
     EXPECT_FALSE(stud.is_valid(5, 0));
 }
+
+TEST(Student, testStudentShouldAttack){
+    Student stud = Student();
+    int Record[5][6];
+    Color color[5][6];
+    int Max[5][6];
+    Max[0][0] = 2;
+    Max[0][1] = 3;
+    Record[0][0] = 1;
+    Record[0][1] = 2;
+    Record[1][0] = 1;
+    color[0][0] = Red;
+    color[0][1] = Blue;
+    color[1][0] = Blue;
+    int i = 0;
+    int j = 0;
+    bool attack = stud.should_attack(Record, Max, color, Red, i, j);
+    EXPECT_TRUE(attack);
+}
 #endif
