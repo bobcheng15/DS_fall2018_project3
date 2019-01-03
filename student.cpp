@@ -1,10 +1,10 @@
 #include <iostream>
-enum Color{
-        White, // Initital 0
-        Blue, // Player One
-        Red, // Player Two
-        Black //Explosion
-    };
+// enum Color{
+//         White, // Initital 0
+//         Blue, // Player One
+//         Red, // Player Two
+//         Black //Explosion
+//     };
 
 class Student{
     public:
@@ -113,21 +113,21 @@ class Student{
         int x;
         int y;
     };
-int main(void){
-    int record[5][6];
-    int Max[5][6];
-    Color color[5][6];
-    for (int i = 0; i < 5; i ++){
-        for (int j = 0; j < 6; j ++){
-            record[i][j] = 0;
-            Max[i][j] = 5;
-            color[i][j] = White;
-        }
-    }
-    Student stud;
-    stud.makeMove(record, Max, color, Blue);
-    int x = stud.getX();
-    int y = stud.getY();
-    std::cout << x << " " << y;
-    return 0;
-}
+// int main(void){
+//     int record[5][6];
+//     int Max[5][6];
+//     Color color[5][6];
+//     for (int i = 0; i < 5; i ++){
+//         for (int j = 0; j < 6; j ++){
+//             record[i][j] = 0;
+//             Max[i][j] = 5;
+//             color[i][j] = White;
+//         }
+//     }
+//     Student stud;
+//     stud.makeMove(record, Max, color, Blue);
+//     int x = stud.getX();
+//     int y = stud.getY();
+//     std::cout << x << " " << y;
+//     return 0;
+// }
