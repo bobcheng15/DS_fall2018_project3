@@ -1,17 +1,22 @@
+
 class Student{
     public:
         void makeMove(int Record[5][6], int Max[5][6], Color color[5][6], Color inputColor){
+            bool set = false;
             x = 1;
             y = 1;
             for (int i = 0; i < 5; i ++){
                 for (int j = 0; j < 6; j ++){
                     if (is_playable(color, i, j, inputColor)){
-                        if (Record[i][j] == (Max[i][j] - 1) && should_attack(Record, Max, color, inputColor, i, j)){
+                        if (Record[i][j] != Max[i][j] - 1 && should_attack(Record, Max, color, inputColor, i ,j)){
+                            continue;
+                        }
+                        else if (Record[i][j] == (Max[i][j] - 1) && should_attack(Record, Max, color, inputColor, i, j)){
                             x = i;
                             y = j;
                             return;
                         }
-                        else if (is_corner(i, j) && !should_avoid(Record, Max, color, inputColor, i, j)){
+                        else if (is_corner(i, j) && color[i][j] == White){
                             if (!is_corner(x, y) && !is_edge(x, y)){
                                 x = i;
                                 y = j;
@@ -24,26 +29,54 @@ class Student{
                                 x = i;
                                 y = j;
                             }
+                            return;
                         }
-                        else if (is_edge(i, j) && !is_corner(i, j) && !should_avoid(Record, Max, color, inputColor, i, j)){
-                            if (!is_edge(x ,y) && !is_corner(x, y)){
+                        if (is_neighbor(color, inputColor, i , j) && Record[i][j] != Max[i][j] - 1){
+                            if (!set){
+                                x = i;
+                                y = j;
+                                set = true;
+                            }
+                            else if (!is_corner(x, y) && Max[i][j] - Record[i][j] < Max[x][y] - Record[x][y]){
+                                x = i;
+                                y = j;
+                                set = true;
+                            }
+
+                        }
+                        else{
+                            if (!set){
                                 x = i;
                                 y = j;
                             }
-                            else if (is_edge(x, y) && !is_corner(x, y) && Max[i][j] - Record[i][j] > Max[x][y] - Record[x][y]){
-                                x = i;
-                                y = j;
-                            }
                         }
-                        else if (!is_edge(i, j) && !is_corner(i, j) && !should_avoid(Record, Max, color, inputColor, i, j)){
-                            if (!is_edge(x, y) && !is_corner(x, y) && Max[i][j] - Record[i][j] > Max[x][y] - Record[x][y]){
-                                x = i;
-                                y = j;
-                            }
-                        }
+
                     }
                 }
             }
+        }
+        bool is_neighbor(Color color[5][6], Color inputColor, const int & i, const int & j){
+            if (is_valid(i - 1, j)){
+                if (color[i - 1][j] != inputColor && color[i - 1][j] != White && color[i - 1][j] != Black){
+                    return true;
+                }
+            }
+            if (is_valid(i + 1, j)){
+                if (color[i + 1][j] != inputColor && color[i + 1][j] != White && color[i + 1][j] != Black){
+                    return true;
+                }
+            }
+            if (is_valid(i, j + 1)){
+                if (color[i][j + 1] != inputColor && color[i][j + 1] != White && color[i][j + 1] != Black){
+                    return true;
+                }
+            }
+            if (is_valid(i, j - 1)){
+                if (color[i][j - 1] != inputColor && color[i][j - 1] != White && color[i][j - 1] != Black){
+                    return true;
+                }
+            }
+            return false;
         }
         bool is_valid(const int & i, const int & j) {
             if ((i >= 0) && (i < 5) && (j >= 0) && (j < 6)) return true;
